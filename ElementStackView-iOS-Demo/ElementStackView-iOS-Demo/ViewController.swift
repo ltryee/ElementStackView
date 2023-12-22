@@ -43,32 +43,27 @@ class StackViewController: UIViewController {
             make.centerY.equalToSuperview()
         }
         stackView.addArrangedElements(loginElementList())
-        
-        view.addSubview(anotherStackView)
-        anotherStackView.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-            make.top.equalTo(stackView.snp.bottom).offset(10)
-        }
-        anotherStackView.addArrangedElements(loginElementList())
     }
     
     func loginElementList() -> [EType] {
         return [
             .segment(items: ["登录", "注册"], defaultIndex: 0, onTapped: nil),
             .spacer(height: 15),
-            .commonInput(label: "User Name: ", placeHolder: "Email/Phone/ID", onTextChanged: { text in
-                print("User Name: \(String(describing: text))")
-            }),
+            .scrollableContainer(height: 0, elements: [
+                .commonInput(label: "User Name: ", placeHolder: "Email/Phone/ID", onTextChanged: { text in
+                    print("User Name: \(String(describing: text))")
+                }),
+                .spacer(height: 50),
+                .commonInput(label: "Password: ", placeHolder: "Password", onTextChanged: { text in
+                    print("Password: \(String(describing: text))")
+                }),
+                .spacer(height: 100),
+                .checker(title: "记住用户名", checked: false, onTapped: { checked in
+                    print("checked: \(checked)")
+                }),
+                .spacer(height: 100),
+            ]),
             .spacer(height: 15),
-            .commonInput(label: "Password: ", placeHolder: "Password", onTextChanged: { text in
-                print("Password: \(String(describing: text))")
-            }),
-            .spacer(height: 10),
-            .checker(title: "记住用户名", checked: false, onTapped: { checked in
-                print("checked: \(checked)")
-            }),
-            .spacer(height: 10),
             .button(title: "登录", onTapped: nil)
         ]
     }

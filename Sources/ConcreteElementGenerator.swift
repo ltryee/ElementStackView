@@ -35,6 +35,8 @@ struct ConcreteElementGenerator: ElementGenerator {
             return createChecker(title: title, checked: checked, onTapped: onTapped)
         case let .spacer(height: height):
             return createSpacer(height: height)
+        case let .scrollableContainer(height: height, elements: elements):
+            return createScrollable(height: height, elements: elements)
 //        default:
 //            preconditionFailure()
         }
@@ -45,6 +47,12 @@ struct ConcreteElementGenerator: ElementGenerator {
         case let .spacer(height: height):
             view.snp.makeConstraints { make in
                 make.height.equalTo(height)
+            }
+        case .scrollableContainer(height: let height, elements: _):
+            if height > 0 {
+                view.snp.updateConstraints { make in
+                    make.height.equalTo(height)
+                }
             }
         default: break
         }
@@ -73,6 +81,8 @@ private extension ConcreteElementGenerator {
             make.centerY.equalToSuperview()
             make.left.equalTo(0)
         }
+        promptLabel.setContentHuggingPriority(.required, for: .horizontal)
+        promptLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         let textFiled = UITextField()
         textFiled.placeholder = placeHolder ?? ""
@@ -159,5 +169,25 @@ private extension ConcreteElementGenerator {
     
     func createSpacer(height: CGFloat) -> UIView {
         return UIView()
+    }
+    
+    func createScrollable(height: CGFloat, elements: [ElementType]) -> UIScrollView {
+        let scrollView = UIScrollView()
+        
+        let stackView = ElementStackView<Self>(elementGenerator: Self())
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .fill
+        scrollView.addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().priority(.low)
+        }
+        stackView.addArrangedElements(elements)
+        
+        return scrollView
     }
 }

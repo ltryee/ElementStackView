@@ -16,6 +16,7 @@ enum ElementType {
     case segment(items: [Any], defaultIndex: Int, onTapped: ((Int) -> Void)?)
     case checker(title: String, checked: Bool, onTapped: ((Bool) -> Void)?)
     case spacer(height: CGFloat)
+    case scrollableContainer(height: CGFloat, elements: [ElementType])
 }
 
 class ElementStackView<T: ElementGenerator>: UIStackView {

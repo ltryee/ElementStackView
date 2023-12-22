@@ -34,8 +34,8 @@ struct AnotherElementGenerator: ElementGenerator {
             return createChecker(title: title, checked: checked, onTapped: onTapped)
         case let .spacer(height: height):
             return createSpacer(height: height)
-//        default:
-//            preconditionFailure()
+        default:
+            preconditionFailure()
         }
     }
     
