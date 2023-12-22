@@ -40,7 +40,9 @@ class StackViewController: UIViewController {
         stackView.snp.makeConstraints { make in
             make.left.equalTo(20)
             make.right.equalTo(-20)
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().priority(.low)
+            make.top.greaterThanOrEqualToSuperview().offset(60)
+            make.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
         stackView.addArrangedElements(loginElementList())
     }
