@@ -55,15 +55,15 @@ class StackViewController: UIViewController {
                 .commonInput(label: "User Name: ", placeHolder: "Email/Phone/ID", onTextChanged: { text in
                     print("User Name: \(String(describing: text))")
                 }),
-                .spacer(height: 50),
+                .spacer(height: 10),
                 .commonInput(label: "Password: ", placeHolder: "Password", onTextChanged: { text in
                     print("Password: \(String(describing: text))")
                 }),
-                .spacer(height: 100),
+                .spacer(height: 10),
                 .checker(title: "记住用户名", checked: false, onTapped: { checked in
                     print("checked: \(checked)")
                 }),
-                .spacer(height: 100),
+                .spacer(height: 10),
             ]),
             .spacer(height: 15),
             .button(title: "登录", onTapped: nil)
