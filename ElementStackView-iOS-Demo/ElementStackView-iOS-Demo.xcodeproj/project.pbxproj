@@ -15,6 +15,7 @@
 		69400AAC2B30063700ADE937 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 69400AAB2B30063700ADE937 /* RxCocoa */; };
 		69400AAE2B30063700ADE937 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 69400AAD2B30063700ADE937 /* RxRelay */; };
 		69400AB02B30063700ADE937 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 69400AAF2B30063700ADE937 /* RxSwift */; };
+		69E69C252B399DBE0075FA34 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 69E69C242B399DBE0075FA34 /* Resolver */; };
 		69F22AB22B2FF7EB00001C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F22AB12B2FF7EB00001C8B /* AppDelegate.swift */; };
 		69F22AB42B2FF7EB00001C8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F22AB32B2FF7EB00001C8B /* SceneDelegate.swift */; };
 		69F22AB62B2FF7EB00001C8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F22AB52B2FF7EB00001C8B /* ViewController.swift */; };
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69E69C252B399DBE0075FA34 /* Resolver in Frameworks */,
 				69400AAC2B30063700ADE937 /* RxCocoa in Frameworks */,
 				69F22AE32B2FF95900001C8B /* SnapKit in Frameworks */,
 				69400AB02B30063700ADE937 /* RxSwift in Frameworks */,
@@ -188,6 +190,7 @@
 				69400AAB2B30063700ADE937 /* RxCocoa */,
 				69400AAD2B30063700ADE937 /* RxRelay */,
 				69400AAF2B30063700ADE937 /* RxSwift */,
+				69E69C242B399DBE0075FA34 /* Resolver */,
 			);
 			productName = "ElementStackView-iOS-Demo";
 			productReference = 69F22AAE2B2FF7EB00001C8B /* ElementStackView-iOS-Demo.app */;
@@ -264,6 +267,7 @@
 			packageReferences = (
 				69F22AE12B2FF95900001C8B /* XCLocalSwiftPackageReference "../../../GitHub/SnapKit" */,
 				69F22AE42B2FF97200001C8B /* XCLocalSwiftPackageReference "../../../GitHub/RxSwift" */,
+				69E69C232B399DB60075FA34 /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = 69F22AAF2B2FF7EB00001C8B /* Products */;
 			projectDirPath = "";
@@ -669,6 +673,17 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		69E69C232B399DB60075FA34 /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		69400AA92B30063700ADE937 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -689,6 +704,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 69F22AE42B2FF97200001C8B /* XCLocalSwiftPackageReference "../../../GitHub/RxSwift" */;
 			productName = RxSwift;
+		};
+		69E69C242B399DBE0075FA34 /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69E69C232B399DB60075FA34 /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
 		};
 		69F22AE22B2FF95900001C8B /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

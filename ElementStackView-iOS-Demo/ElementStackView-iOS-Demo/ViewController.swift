@@ -14,17 +14,7 @@ class StackViewController: UIViewController {
     typealias EType = ElementType
     
     lazy var stackView = {
-        let stackView = ElementStackView<ConcreteElementGenerator>(elementGenerator: ConcreteElementGenerator())
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .fill
-        stackView.backgroundColor = .lightGray.withAlphaComponent(0.1)
-//        stackView.spacing = 10
-        return stackView
-    }()
-    
-    lazy var anotherStackView = {
-        let stackView = ElementStackView<AnotherElementGenerator>(elementGenerator: AnotherElementGenerator())
+        let stackView = ElementStackView<ConcreteElementGenerator>()
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.alignment = .fill
@@ -44,6 +34,7 @@ class StackViewController: UIViewController {
             make.top.greaterThanOrEqualToSuperview().offset(60)
             make.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
+        
         stackView.addArrangedElements(loginElementList())
     }
     

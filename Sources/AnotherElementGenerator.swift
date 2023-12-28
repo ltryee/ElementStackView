@@ -10,11 +10,9 @@ import RxSwift
 import RxCocoa
 
 struct AnotherElementGenerator: ElementGenerator {
-    private let disposeBag: DisposeBag
+    private let disposeBag: DisposeBag = DisposeBag()
 
-    init(disposeBag: DisposeBag = DisposeBag()) {
-        self.disposeBag = disposeBag
-    }
+    init() {}
     
     // MARK: ElementGenerator
     typealias EType = ElementType

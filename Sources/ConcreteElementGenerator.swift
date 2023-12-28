@@ -11,17 +11,15 @@ import RxCocoa
 
 struct ConcreteElementGenerator: ElementGenerator {
     
-    private let disposeBag: DisposeBag
+    private let disposeBag: DisposeBag = DisposeBag()
 
-    init(disposeBag: DisposeBag = DisposeBag()) {
-        self.disposeBag = disposeBag
-    }
+    init() {}
     
     // MARK: ElementGenerator
     typealias EType = ElementType
     private(set) weak var containerView: UIStackView?
-    
-    func elementView(from element: ElementType) -> UIView {
+
+    func elementView(from element: EType) -> UIView {
         switch element {
         case let .centeredText(title: title):
             return createSingleLineText(title)
@@ -42,7 +40,7 @@ struct ConcreteElementGenerator: ElementGenerator {
         }
     }
     
-    func configureView(_ view: UIView, for element: ElementType) {
+    func configureView(_ view: UIView, for element: EType) {
         switch element {
         case let .spacer(height: height):
             view.snp.makeConstraints { make in
@@ -174,7 +172,7 @@ private extension ConcreteElementGenerator {
     func createScrollable(height: CGFloat, elements: [ElementType]) -> UIScrollView {
         let scrollView = UIScrollView()
         
-        let stackView = ElementStackView<Self>(elementGenerator: Self())
+        let stackView = ElementStackView<Self>()
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.alignment = .fill
