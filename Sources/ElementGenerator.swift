@@ -11,8 +11,6 @@ import UIKit
 protocol ElementGenerator {
     associatedtype EType
     
-    init()
-    
     /// 向 stack view 添加子控件
     /// - Parameters:
     ///   - elements: 子控件列表

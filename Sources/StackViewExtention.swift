@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Resolver
 
 enum ElementType {
     /// 居中的文字
@@ -57,7 +58,7 @@ enum ElementType {
 class ElementStackView<T: ElementGenerator>: UIStackView {
     typealias EType = T.EType
     
-    lazy var elementGenerator: T = T()
+    @LazyInjected var elementGenerator: T
 
     func addArrangedElements<E>(_ elements: [E]) -> Void where E == EType {
         elementGenerator.addArrangedElements(elements, to: self)

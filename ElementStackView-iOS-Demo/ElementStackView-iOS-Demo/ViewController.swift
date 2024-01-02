@@ -9,6 +9,18 @@ import Foundation
 import UIKit
 import SnapKit
 import SwiftUI
+import Resolver
+
+extension Resolver: ResolverRegistering {
+    public static func registerAllServices() {
+        register {
+            ConcreteElementGenerator()
+        }.scope(.application)
+        register {
+            AnotherElementGenerator()
+        }.scope(.application)
+    }
+}
 
 class StackViewController: UIViewController {
     typealias EType = ElementType
