@@ -40,11 +40,11 @@ class StackViewController: UIViewController {
         
         view.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-            make.centerY.equalToSuperview().priority(.low)
-            make.top.greaterThanOrEqualToSuperview().offset(60)
-            make.bottom.lessThanOrEqualToSuperview().offset(-20)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-20)
+            make.centerY.equalTo(view.safeAreaLayoutGuide.snp.centerY).priority(.low)
+            make.top.greaterThanOrEqualTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
         }
         
         stackView.addArrangedElements(loginElementList())
@@ -54,20 +54,21 @@ class StackViewController: UIViewController {
         return [
             .segment(items: ["登录", "注册"], defaultIndex: 0, onTapped: nil),
             .spacer(height: 15),
-            .scrollableContainer(height: 0, elements: [
-                .commonInput(label: "User Name: ", placeHolder: "Email/Phone/ID", onTextChanged: { text in
-                    print("User Name: \(String(describing: text))")
-                }),
-                .spacer(height: 10),
-                .commonInput(label: "Password: ", placeHolder: "Password", onTextChanged: { text in
-                    print("Password: \(String(describing: text))")
-                }),
-                .spacer(height: 10),
-                .checker(title: "记住用户名", checked: false, onTapped: { checked in
-                    print("checked: \(checked)")
-                }),
-                .spacer(height: 10),
-            ]),
+            .scrollableContainer(height: 200, // 显式指定 scrollableContainer 高度
+                                 elements: [  // 大于内部控件高度
+                                    .commonInput(label: "User Name: ", placeHolder: "Email/Phone/ID", onTextChanged: { text in
+                                        print("User Name: \(String(describing: text))")
+                                    }),
+                                    .spacer(height: 10),
+                                    .commonInput(label: "Password: ", placeHolder: "Password", onTextChanged: { text in
+                                        print("Password: \(String(describing: text))")
+                                    }),
+                                    .spacer(height: 10),
+                                    .checker(title: "记住用户名", checked: false, onTapped: { checked in
+                                        print("checked: \(checked)")
+                                    }),
+                                    .spacer(height: 10),
+                                 ]),
             .spacer(height: 15),
             .button(title: "登录", onTapped: nil)
         ]

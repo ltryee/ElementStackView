@@ -50,7 +50,7 @@ enum ElementType {
     
     /// 可滚动容器
     /// - Parameters:
-    ///   - height: 容器高度
+    ///   - height: 容器高度，传入大于 0 的值表示显式设置控件的高度为 `height`；传入 0 表示不显式指定控件高度，由 `elements` 实际高度撑起此控件。
     ///   - elements: 容器中的元素列表
     case scrollableContainer(height: CGFloat, elements: [ElementType])
 }

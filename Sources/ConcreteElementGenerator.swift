@@ -172,15 +172,18 @@ private extension ConcreteElementGenerator {
     func createScrollable(height: CGFloat, elements: [ElementType]) -> UIScrollView {
         let scrollView = UIScrollView()
         
-        let stackView = ElementStackView<Self>()
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .fill
+        let stackView = {
+            let view = ElementStackView<Self>()
+            view.axis = .vertical
+            view.distribution = .equalSpacing
+            view.alignment = .fill
+            view.spacing = 0
+            return view
+        }()
+        
         scrollView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.left.right.equalToSuperview()
+            make.edges.equalTo(scrollView.contentLayoutGuide.snp.edges)
             make.width.equalToSuperview()
             make.height.equalToSuperview().priority(.low)
         }
